@@ -25,4 +25,10 @@
 - In order to authenticate the middleware that receive an OpenID connnect Berear token. Without middleware bereat token the `[Authorize]` for controller remain unauthorized.
     - go to `> Nuget Gallery`
     - search for `Microsoft.AspNetCore.Authentication.JwtBearer by Mircrosoft`
+    - `app.UseAuthentication()`: Do you have a valid token.
+    - `app.UseAuthorization()`: Are you allowed
+- To test in the postman:
+    - Key: wirte `Authorization`
+    - Value: wirte `Bearer paste_the_token`
+
 
