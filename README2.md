@@ -23,6 +23,25 @@
 - dotnet ef database drop
 - dotnet ef database update
 
+- Why routing
+    - is a way to direct the user into a page. Each component has a `path` that the routerLink direct the user to that component by default or by a button event.    
+- Why `route guard`
+    - Is a away of preventing components from unauthorized users. 
+        - `ng g g auth --skip-tests`
+    - `auth guard` is a security, but it is just hidden of something. The security is on the `API` side. 
+- How the `route guard` works
+    - If the idea be prevent links, if the user is not logged in.
+    - If the user logged in then the component propagate an event `(observable)`.
+    - The `auth guard` only sees, if the `observable` of the logged in `user` has `user object` then return `True` otherwise `false`. 
+    - To avoid a component, we write in `app-routing-module` `canActivate:[AuthGuard]`. 
+    - `An important point` that auth `auth guard` doesn't require `subscription` and `unsubscription` for `observable`.
+
+- What is `Module`
+    - Module in this app is uded to separate the installed third party libraries in a `Module` and then import that `Module` in the `import of app.module`.
+
+
+
+
 
 
 
