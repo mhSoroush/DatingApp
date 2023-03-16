@@ -18,6 +18,8 @@ namespace API.Extensions
             services.AddCors();
             // It is good to add ITokenService also bedause of testing 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
 

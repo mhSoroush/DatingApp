@@ -18,11 +18,13 @@ namespace API.Entities
         public string Interests {get; set;}
         public string City {get; set;}
         public string Country {get; set;}
-        public List<Photo> photos {get; set;} = new();
+        public List<Photo> Photos {get; set;} = new();
 
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
+        // It will show passwordHash and Salt in query, so instead the following, mapping is done in 
+        // AutoMapper Helper
+        //public int GetAge()
+        //{
+        //    return DateOfBirth.CalculateAge();
+        //}
     }
 }
