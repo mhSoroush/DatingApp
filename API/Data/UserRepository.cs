@@ -30,6 +30,7 @@ namespace API.Data
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
+            // ConfigurationProvider: the mapper is provided in the services. 
             return await _context.Users
                 .Where(x =>x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
