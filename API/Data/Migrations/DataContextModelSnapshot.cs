@@ -79,8 +79,8 @@ namespace API.Data.Migrations
                     b.Property<bool>("IsMain")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PublicId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
@@ -95,7 +95,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "AppUser")
-                        .WithMany("photos")
+                        .WithMany("Photos")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -105,7 +105,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    b.Navigation("photos");
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }
