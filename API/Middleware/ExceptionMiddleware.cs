@@ -17,6 +17,7 @@ namespace API.Middleware
         }
 
         // This method must be named InvokeAsync because it is called by the framework
+        
         public async Task InvokeAsync(HttpContext context)
         {
             try 

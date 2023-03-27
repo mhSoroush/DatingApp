@@ -23,7 +23,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-// The following code must be before MapControllers and after app.Run();
+// The following code must be after MapControllers and before app.Run();
 using var scope =  app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
