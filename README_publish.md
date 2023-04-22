@@ -1,6 +1,6 @@
 -  `search for localhost`
     - replace all localhost link to production environment
-    - environment.apuUrl
+    - environment.apiUrl
 
 - `Create the physical files`
     - in `angular.json` - file under `build`, `outputPath` the built files will be created 
@@ -11,17 +11,17 @@
     - `app.UseStaticFiles();`: Becuse we changed `dist/client` to `../API/wwwroot`  
 
 - Create Production build
-    - go to the `client` directory, and write `ng build`
+    - go to the `client` directory, and write `ng build --configuration production --aot`
     - if you get an error of `bundle initial exceeded maximum budget.` then:
         - Go to `angular.json` file under "budgets" change
             - "maximumWarning": "1mb",
             - "maximumError": "2mb"
     - run again `ng build` if you got an error of size exceed
     - the folder with physical files of angualr is created in `wwwroot`. 
-    - Now if you run dotnet run, you can access the client pages under the `api url` directly. But if `refresh` the webpages then, the webpages are not available anymore becasue `routing` need to be implemented. 
+    - Now if you run `dotnet run`, you can access the client pages under the `api url` directly. But if `refresh` the webpages then, the webpages are not available anymore becasue `routing` need to be implemented. 
 
 - Adding `FallbackController`
-    - In order to pass routing responsibility from `wwwroot` directory angular. we create an `Controller` in the API.
+    - In order to pass routing responsibility from `wwwroot` directory to Angular. we create an `Controller` in the API.
     - We add the FallbackController to the `middle ware` in `program.cs`
         - `app.MapFallbackToController("Index", "Fallback");`
         - the name `"Fallback"` is the name of `FallbackController` so we write without `Controller`.
@@ -35,12 +35,12 @@
 
 - Install Docker desktop from `docker.com`
     - after installation, you are able to wirte `docker` in the root directory of the app.
-    - run this command in DatingApp root directory to create the postrgreSQL in the docker.
+    - run this command in DatingApp root directory to create the postrgreSQL in the docker desktop.
     - `"docker run --name postgres -e POSTGRES_PASSWORD=simplePass -p someport:someport -d postgres:latest"`
-        - `--name postgres`: give a name for the installed DB in docker env.
+        - `--name postgres`: give a name of `postgres` for the installed DB in docker env.
         - `-e`: is the environment 
         - `-p`: is the port
-        - `-d`: detach
+        - `-d`: detached mode
         - `postgres:latest`: install the latest version of postgres. 
     
     - Install `postgreSQL` in the `vs code`
@@ -48,7 +48,8 @@
         - you are able to see the icon in sidebar
 
     - Go to `NuGet Gallery` search for `Ngpsql.EntityFrameworkCore.PostgreSQL` by Shay Rojansky ...
-    - remove the previous DB, to remove go into `API` directory 
+    - remove the previous DB.
+        - `cd API/` 
         - run `dotnet ef database drop`
     - change the provious connectionString
         - go to `appsettings.Development.json`

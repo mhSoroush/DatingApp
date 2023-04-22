@@ -12,11 +12,11 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 var connString = "";
-if (builder.Environment.IsDevelopment())
+if (builder.Environment.IsDevelopment()) 
     connString = builder.Configuration.GetConnectionString("DefaultConnection");
-else
+else 
 {
-    // Use connection string provided at runtime by FlyIO.
+// Use connection string provided at runtime by Heroku.
     var connUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
     // Parse connection URL to connection string for Npgsql
@@ -29,8 +29,9 @@ else
     var pgPass = pgUserPass.Split(":")[1];
     var pgHost = pgHostPort.Split(":")[0];
     var pgPort = pgHostPort.Split(":")[1];
+	var updatedHost = pgHost.Replace("flycast", "internal");
 
-    connString = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
+    connString = $"Server={updatedHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};";
 }
 builder.Services.AddDbContext<DataContext>(opt =>
 {
@@ -42,7 +43,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
+app.UseCors(builder => builder
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
     .WithOrigins("https://localhost:4200"));
 // Order is importent
 app.UseAuthentication();
