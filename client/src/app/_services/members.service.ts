@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LikeParams } from '../_models/likeParams';
 import { Member } from '../_models/member';
 import { PaginationResult } from '../_models/pagination';
 import { User } from '../_models/user';
@@ -93,6 +94,26 @@ export class MembersService {
 
   deletePhoto(photoId: number){
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+  addLike(username: string)
+  {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(likeParams : LikeParams)
+  {
+    let params = this.getPaginationHeaders(likeParams.pageNumber, likeParams.pageSize);
+
+    params = params.append('predicate', likeParams.predicate);
+
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'likes', params).pipe(
+      map(response => {
+        //TODO Cashe
+        return response;
+      })
+    )
+    //return this.http.get<Member[]>(this.baseUrl + 'likes?predicate=' + predicate);
   }
 
   private getPaginatedResult<T>(url: string, params: HttpParams) {
