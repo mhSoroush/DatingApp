@@ -145,6 +145,10 @@
     - `fly deploy` it works for me, but for some users it will not works because of differet chips
 
 
+- some extra comments
+    - fly postgres attach --app hadi-soroush hadi-soroush-db
+
+
 
 
     
