@@ -2,7 +2,7 @@ export class LikeParams
 {
     
     pageNumber = 1;
-    pageSize = 5;
+    pageSize = 3;
     predicate = 'liked'
 
     constructor(predicate: string){

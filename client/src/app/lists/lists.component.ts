@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { retryWhen } from 'rxjs';
 import { LikeParams } from '../_models/likeParams';
 import { Member } from '../_models/member';
@@ -13,15 +14,16 @@ import { MembersService } from '../_services/members.service';
 export class ListsComponent implements OnInit {
   pagination: Pagination | undefined;
   likeParams :LikeParams | undefined;
-  members : Member[] | undefined;
+  members : Member[] = [];
   //predicate: string = 'liked'
 
-  constructor(private memberService: MembersService) {
+  constructor(
+    private memberService: MembersService) {
     this.likeParams = new LikeParams('liked');
   }
 
   ngOnInit(): void {
-    this.loadLikes()
+    this.loadLikes();
   }
 
   loadLikes(){
@@ -43,4 +45,6 @@ export class ListsComponent implements OnInit {
       this.loadLikes();
     }
   }
+
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
@@ -10,11 +10,16 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {}
+  isDevmode : boolean = false; 
   constructor(public accountService: AccountService, 
     private router: Router,
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
+    if(isDevMode()){
+      this.isDevmode = true;
+    }else
+    this.isDevmode = false;
   }
 
   login(){

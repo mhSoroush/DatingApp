@@ -11,3 +11,13 @@ img {
 .dropdown {
     display: inline-flex;
 }
+
+.img-circle {  
+    max-height:40px;
+}
+
+.text-taggle{
+    color: #fff;
+    font-weight: 600;
+    margin: 8px 0px 0 3px;
+}

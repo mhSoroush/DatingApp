@@ -23,6 +23,9 @@ namespace API.Entities
         public List<UserLike> LikeByUsers { get; set; }
         public List<UserLike> LikedUsers { get; set; }
 
+        public List<Message> MessagesSent { get; set; }
+        public List<Message> MessagesReceived { get; set; }
+
         // It will show passwordHash and Salt in query, so instead the following, mapping is done in 
         // AutoMapper Helper
         //public int GetAge()
